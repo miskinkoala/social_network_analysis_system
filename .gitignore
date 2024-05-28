@@ -1,0 +1,5 @@
+#ignore file paths
+
+docs/*.mp4
+
+/build/
