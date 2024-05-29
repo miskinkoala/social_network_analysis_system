@@ -165,6 +165,8 @@ public class Main {
         network.addFriendship("Noah Torres", "Olivia Ramirez");
         network.addFriendship("Olivia Ramirez", "Sophia Flores");
         network.addFriendship("Sophia Flores", "William Cruz");
+
+        network.addPerson("Tayyip Soner Tekin", 22, Arrays.asList("Planting", "Surviving"));
     }
 
 
