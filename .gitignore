@@ -2,4 +2,6 @@
 
 docs/*.mp4
 
+docs/javadocs
+
 /build/
