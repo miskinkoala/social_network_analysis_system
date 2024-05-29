@@ -21,4 +21,13 @@ public class Person {
     public String toString() {
         return name + " (Age: " + age + ", Hobbies: " + hobbies + ", Timestamp: " + timestamp +")";
     }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public int compareTo(Person otherPerson) {
+        return this.name.compareTo(otherPerson.getName());
+    }
+
 }

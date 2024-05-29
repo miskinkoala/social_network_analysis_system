@@ -30,6 +30,40 @@ public class Main {
         network.addFriendship("Jane Smith", "Bob Brown");
         network.addFriendship("Emily Davis", "Frank Wilson");
 
+
+        network.addPerson("Charlie Lee", 29, Arrays.asList("cooking", "painting"));
+        network.addPerson("David Kim", 24, Arrays.asList("reading", "cooking"));
+        network.addPerson("Ella Garcia", 31, Arrays.asList("running", "painting"));
+        network.addPerson("Grace Martinez", 23, Arrays.asList("swimming", "painting"));
+        network.addPerson("Henry Nguyen", 32, Arrays.asList("reading", "hiking"));
+
+        // Adding more friendships for demonstration
+        network.addFriendship("Alice Johnson", "Charlie Lee");
+        network.addFriendship("Alice Johnson", "David Kim");
+        network.addFriendship("Charlie Lee", "David Kim");
+        network.addFriendship("Ella Garcia", "Grace Martinez");
+        network.addFriendship("Henry Nguyen", "Frank Wilson");
+
+
+        // Adding more people for demonstration
+        network.addPerson("Isabella Hernandez", 26, Arrays.asList("reading", "cooking"));
+        network.addPerson("Jacob Lopez", 30, Arrays.asList("running", "painting"));
+        network.addPerson("Liam Gonzalez", 28, Arrays.asList("swimming", "hiking"));
+        network.addPerson("Mia Perez", 25, Arrays.asList("reading", "painting"));
+        network.addPerson("Noah Torres", 29, Arrays.asList("cooking", "running"));
+        network.addPerson("Olivia Ramirez", 27, Arrays.asList("swimming", "hiking"));
+        network.addPerson("Sophia Flores", 24, Arrays.asList("reading", "painting"));
+        network.addPerson("William Cruz", 31, Arrays.asList("cooking", "running"));
+
+        // Adding more friendships for demonstration
+        network.addFriendship("Isabella Hernandez", "Jacob Lopez");
+        network.addFriendship("Isabella Hernandez", "Mia Perez");
+        network.addFriendship("Jacob Lopez", "Liam Gonzalez");
+        network.addFriendship("Mia Perez", "Noah Torres");
+        network.addFriendship("Noah Torres", "Olivia Ramirez");
+        network.addFriendship("Olivia Ramirez", "Sophia Flores");
+        network.addFriendship("Sophia Flores", "William Cruz");
+
         while (!exit) {
             printMenu();
             int choice = scanner.nextInt();
@@ -97,10 +131,12 @@ public class Main {
                     System.out.print("Enter maximum number of friends to suggest: ");
                     maxFriends = scanner.nextInt();
                     System.out.println("Suggested friends for " + name + ":");
+                    System.out.println();
                     network.suggestFriends(name, maxFriends);
                     break;
                 case 7:
-                    //countClusters();
+                    System.out.println("Counting clusters in the social network...");
+                    network.countClusters();
                     break;
                 case 8:
                     exit = true;

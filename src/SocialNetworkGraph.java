@@ -137,12 +137,37 @@ public class SocialNetworkGraph {
             path.add(at);
         }
         Collections.reverse(path);
-        System.out.println("Shortest path: " + path);
+        System.out.println("Shortest path: ");
+        for (Person person : path) {
+            if(person.compareTo(end) != 0)
+                System.out.print(person.getName() + " --> ");
+            else
+                System.out.print(person.getName());
+        }
+        System.out.println();
     }
 
     // Method to count clusters using BFS
     public void countClusters() {
-        //implement logic here
+        Set<Person> visited = new HashSet<>();
+        int clusterCount = 0;
+
+        for (Person person : people.values()) {
+            if (!visited.contains(person)) {
+                List<Person> cluster = new ArrayList<>();
+                bfs(person, visited, cluster);
+                clusterCount++;
+
+                // Print the names of people in the cluster
+                System.out.println("Cluster " + clusterCount + ":");
+                for (Person p : cluster) {
+                    System.out.println(p.getName());
+                }
+                System.out.println();
+            }
+        }
+
+        System.out.println("Number of clusters found: " + clusterCount);
     }
 
     private void bfs(Person start, Set<Person> visited, List<Person> cluster) {
