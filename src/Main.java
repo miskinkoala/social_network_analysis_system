@@ -15,7 +15,109 @@ public class Main {
         String firstName;
         int maxFriends;
         
+        // Adding some initial people for demonstration
+        addInitialPeople(network);
         
+        while (!exit) {
+            printMenu();
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            switch (choice) {
+                case 1:                     // Adding a new person
+                                
+                    // Get name input
+                    System.out.print("Enter name: ");
+                    name = scanner.nextLine();
+
+                    // Get age input
+                    System.out.print("Enter age: ");
+                    age = scanner.nextInt();
+                    scanner.nextLine(); // Consume newline
+
+                    // Get hobbies input
+                    System.out.print("Enter hobbies (comma-separated): ");
+                    hobbiesInput = scanner.nextLine();
+                    hobbies = hobbiesInput.split(",");
+                    
+                    network.addPerson(name, age, Arrays.asList(hobbies));
+                    break;
+                case 2:                    // Removing a person
+                    System.out.print("Enter name: ");
+                    name = scanner.nextLine();
+                    network.removePerson(name);
+                    break;
+                case 3:                    // Adding a friendship
+                    
+                    System.out.print("Enter first person's name: ");
+                    firstName = scanner.nextLine();
+
+                    System.out.print("Enter second person's name: ");
+                    secondName = scanner.nextLine();
+                    
+                    network.addFriendship(firstName, secondName);
+                    break;
+                case 4:                    // Removing a friendship
+
+                    System.out.print("Enter first person's name: ");
+                    firstName = scanner.nextLine();
+
+                    System.out.print("Enter second person's name: ");
+                    secondName = scanner.nextLine();
+
+                    network.removeFriendship(firstName, secondName);
+                    break;
+                case 5:                    // Finding shortest path
+                    System.out.print("Enter first person's name: ");
+                    firstName = scanner.nextLine();
+
+                    System.out.print("Enter second person's name: ");
+                    secondName = scanner.nextLine();
+                    network.findShortestPath(firstName, secondName);
+                    break;
+                case 6:                    // Suggesting friends
+                    
+
+                    // Prompt the user for input
+                    System.out.print("Enter person’s name: ");
+                    name = scanner.nextLine();
+
+                    System.out.print("Enter maximum number of friends to suggest: ");
+                    maxFriends = scanner.nextInt();
+                    System.out.println("Suggested friends for " + name + ":");
+                    System.out.println();
+                    network.suggestFriends(name, maxFriends);
+                    break;
+                case 7:                    // Counting clusters
+                    System.out.println("Counting clusters in the social network...");
+                    network.countClusters();
+                    break;
+                case 8:                    // Exiting the program
+                    exit = true;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please select an option from 1 to 8.");
+            }
+        }
+        scanner.close();
+        System.out.println("Exiting... Goodbye!");
+    }
+
+    private static void printMenu() {
+        System.out.println("===== Social Network Analysis Menu =====");
+        System.out.println("1. Add person");
+        System.out.println("2. Remove person");
+        System.out.println("3. Add friendship");
+        System.out.println("4. Remove friendship");
+        System.out.println("5. Find shortest path");
+        System.out.println("6. Suggest friends");
+        System.out.println("7. Count clusters");
+        System.out.println("8. Exit");
+        System.out.print("Please select an option: ");
+    }
+
+
+    private static void addInitialPeople(SocialNetworkGraph network) {
         // Adding some people for demonstration
         network.addPerson("John Doe", 25, Arrays.asList("reading", "hiking", "cooking"));
         network.addPerson("Jane Smith", 22, Arrays.asList("swimming", "cooking"));
@@ -63,137 +165,8 @@ public class Main {
         network.addFriendship("Noah Torres", "Olivia Ramirez");
         network.addFriendship("Olivia Ramirez", "Sophia Flores");
         network.addFriendship("Sophia Flores", "William Cruz");
-
-        while (!exit) {
-            printMenu();
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
-
-            switch (choice) {
-                case 1: 
-                                
-                    // Get name input
-                    System.out.print("Enter name: ");
-                    name = scanner.nextLine();
-
-                    // Get age input
-                    System.out.print("Enter age: ");
-                    age = scanner.nextInt();
-                    scanner.nextLine(); // Consume newline
-
-                    // Get hobbies input
-                    System.out.print("Enter hobbies (comma-separated): ");
-                    hobbiesInput = scanner.nextLine();
-                    hobbies = hobbiesInput.split(",");
-                    
-                    network.addPerson(name, age, Arrays.asList(hobbies));
-                    break;
-                case 2:
-                    System.out.print("Enter name: ");
-                    name = scanner.nextLine();
-                    network.removePerson(name);
-                    break;
-                case 3:
-                    
-                    System.out.print("Enter first person's name: ");
-                    firstName = scanner.nextLine();
-
-                    System.out.print("Enter second person's name: ");
-                    secondName = scanner.nextLine();
-                    
-                    network.addFriendship(firstName, secondName);
-                    break;
-                case 4:
-
-                    System.out.print("Enter first person's name: ");
-                    firstName = scanner.nextLine();
-
-                    System.out.print("Enter second person's name: ");
-                    secondName = scanner.nextLine();
-
-                    network.removeFriendship(firstName, secondName);
-                    break;
-                case 5:
-                    System.out.print("Enter first person's name: ");
-                    firstName = scanner.nextLine();
-
-                    System.out.print("Enter second person's name: ");
-                    secondName = scanner.nextLine();
-                    network.findShortestPath(firstName, secondName);
-                    break;
-                case 6:
-                    
-
-                    // Prompt the user for input
-                    System.out.print("Enter person’s name: ");
-                    name = scanner.nextLine();
-
-                    System.out.print("Enter maximum number of friends to suggest: ");
-                    maxFriends = scanner.nextInt();
-                    System.out.println("Suggested friends for " + name + ":");
-                    System.out.println();
-                    network.suggestFriends(name, maxFriends);
-                    break;
-                case 7:
-                    System.out.println("Counting clusters in the social network...");
-                    network.countClusters();
-                    break;
-                case 8:
-                    exit = true;
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please select an option from 1 to 8.");
-            }
-        }
-        scanner.close();
-        System.out.println("Exiting... Goodbye!");
-    }
-
-    private static void printMenu() {
-        System.out.println("===== Social Network Analysis Menu =====");
-        System.out.println("1. Add person");
-        System.out.println("2. Remove person");
-        System.out.println("3. Add friendship");
-        System.out.println("4. Remove friendship");
-        System.out.println("5. Find shortest path");
-        System.out.println("6. Suggest friends");
-        System.out.println("7. Count clusters");
-        System.out.println("8. Exit");
-        System.out.print("Please select an option: ");
     }
 
 
-        
-        
-        
-        
-        
-        
-        
-        
-        /*
-        
-        // Adding some people for demonstration
-        network.addPerson("John Doe", 25, Arrays.asList("reading", "hiking", "cooking"));
-        network.addPerson("Jane Smith", 22, Arrays.asList("swimming", "cooking"));
-        network.addPerson("Alice Johnson", 27, Arrays.asList("hiking", "painting"));
-        network.addPerson("Bob Brown", 30, Arrays.asList("reading", "swimming"));
-        network.addPerson("Emily Davis", 28, Arrays.asList("running", "swimming"));
-        network.addPerson("Frank Wilson", 26, Arrays.asList("reading", "hiking"));
 
-        // Adding friendships for demonstration
-        network.addFriendship("John Doe", "Jane Smith");
-        network.addFriendship("John Doe", "Alice Johnson");
-        network.addFriendship("Jane Smith", "Bob Brown");
-        network.addFriendship("Emily Davis", "Frank Wilson");
-
-        // Finding shortest path for demonstration
-        network.findShortestPath("John Doe", "Bob Brown");
-
-        // Counting clusters for demonstration
-        network.countClusters();
-
-        scanner.close();
-    }
-    */
 }
