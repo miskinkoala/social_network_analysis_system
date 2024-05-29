@@ -13,6 +13,22 @@ public class Main {
         String[] hobbies;
         String secondName;
         String firstName;
+        int maxFriends;
+        
+        
+        // Adding some people for demonstration
+        network.addPerson("John Doe", 25, Arrays.asList("reading", "hiking", "cooking"));
+        network.addPerson("Jane Smith", 22, Arrays.asList("swimming", "cooking"));
+        network.addPerson("Alice Johnson", 27, Arrays.asList("hiking", "painting"));
+        network.addPerson("Bob Brown", 30, Arrays.asList("reading", "swimming"));
+        network.addPerson("Emily Davis", 28, Arrays.asList("running", "swimming"));
+        network.addPerson("Frank Wilson", 26, Arrays.asList("reading", "hiking"));
+
+        // Adding friendships for demonstration
+        network.addFriendship("John Doe", "Jane Smith");
+        network.addFriendship("John Doe", "Alice Johnson");
+        network.addFriendship("Jane Smith", "Bob Brown");
+        network.addFriendship("Emily Davis", "Frank Wilson");
 
         while (!exit) {
             printMenu();
@@ -64,10 +80,24 @@ public class Main {
                     network.removeFriendship(firstName, secondName);
                     break;
                 case 5:
-                    //findShortestPath();
+                    System.out.print("Enter first person's name: ");
+                    firstName = scanner.nextLine();
+
+                    System.out.print("Enter second person's name: ");
+                    secondName = scanner.nextLine();
+                    network.findShortestPath(firstName, secondName);
                     break;
                 case 6:
-                    //suggestFriends();
+                    
+
+                    // Prompt the user for input
+                    System.out.print("Enter person’s name: ");
+                    name = scanner.nextLine();
+
+                    System.out.print("Enter maximum number of friends to suggest: ");
+                    maxFriends = scanner.nextInt();
+                    System.out.println("Suggested friends for " + name + ":");
+                    network.suggestFriends(name, maxFriends);
                     break;
                 case 7:
                     //countClusters();
