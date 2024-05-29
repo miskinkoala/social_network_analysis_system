@@ -5,7 +5,6 @@ SRC_DIR = src
 BUILD_DIR = build
 MAIN_CLASS = Main
 INPUT_DIR = src
-INPUT_FILE = input.txt
 
 # Java compiler
 JAVAC = javac
@@ -19,7 +18,7 @@ compile:
 	$(JAVAC) -d $(BUILD_DIR) $(wildcard $(SRC_DIR)/*.java)
 # Run the main class
 run:
-	$(JAVA) -cp $(BUILD_DIR) $(MAIN_CLASS) $(SRC_DIR)/$(INPUT_FILE)
+	$(JAVA) -cp $(BUILD_DIR) $(MAIN_CLASS)
 
 # Clean build files
 clean:
